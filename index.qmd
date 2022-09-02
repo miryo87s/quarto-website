@@ -1,14 +1,36 @@
 ---
-title: "quarto-website"
-listing:
-  contents: posts
-  sort: "date desc"
-  type: default
-  categories: true
-  sort-ui: false
-  filter-ui: false
+title: "Fangzhou Yu"
+description: "Causal Inference and Sensitivity Analysis"
 page-layout: full
-title-block-banner: true
+image: /social-card.jpg
+resources:
+    - "social-card.jpg"
 ---
 
+::: {.column-page-inset}
+::: {.column-page-inset-left}
+I am a PhD student in UNSW, Business School under supervision of Scientia Professor Robert Kohn and Associate Professor Seojeong Lee. 
 
+My main research interests include estimation and inference of heterogeneous treatment effect and the application of influence function in sensitivity analysis.
+:::
+
+<div class="column-margin column-container">
+![](headshot.jpg){.rounded}
+</div>
+:::
+
+{{< pagebreak >}}
+
+::: {.column-page-inset .text-center}
+```{=html}
+<a class="btn btn-outline-dark", href="https://twitter.com/miryo87s" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-twitter" role='img' aria-label='Twitter'></i>
+</a>
+<a class="btn btn-outline-dark", href="https://github.com/miryo87s" target="_blank" rel="noopener noreferrer">
+    <i class="bi bi-github" role='img' aria-label='Github'></i>
+</a>
+<a class="btn btn-outline-dark", href="z5173794@ad.unsw.edu.au" target="_blank" rel="noopener noreferrer">
+    <i class="ai bi-envelope" role='img' aria-label='email'></i>
+</a>
+```
+:::
