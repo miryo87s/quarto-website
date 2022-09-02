@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://fzy.netlify.app/index.html</loc>
-    <lastmod>2022-09-02T05:21:48.514Z</lastmod>
+    <lastmod>2022-09-02T05:31:33.553Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fzy.netlify.app/research.html</loc>
+    <lastmod>2022-09-02T05:31:32.530Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fzy.netlify.app/about.html</loc>
+    <lastmod>2022-09-02T05:31:32.902Z</lastmod>
   </url>
 </urlset>
