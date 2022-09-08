@@ -16,8 +16,10 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - href: about.qmd
+      - href: https://miryo87s.github.io/datadrivencv/cv.pdf
+        text: Curriculum Vitae
       - href: research.qmd
+      
 
 format:
   html:
