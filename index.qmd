@@ -9,9 +9,9 @@ resources:
 
 ::: {.column-page-inset}
 ::: {.column-page-inset-left}
-I am a PhD student in UNSW, Business School under supervision of Scientia Professor Robert Kohn and Associate Professor Seojeong Lee. 
+I am a PhD student in UNSW, Business School under supervision of Scientia Professor [Robert Kohn](https://acems.org.au/our-people/robert-kohn) and Associate Professor [Seojeong (Jay) Lee](https://sites.google.com/site/misspecifiedjay/). 
 
-My main research interests include estimation and inference of heterogeneous treatment effect and the application of influence function in sensitivity analysis.
+My main research interests include estimation and inference of heterogeneous treatment effect and the application of influence functions in sensitivity analysis. I am also exploring the usefulness of semiparametric influence functions in structural equations.
 :::
 
 <div class="column-margin column-container">

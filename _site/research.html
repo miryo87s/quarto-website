@@ -53,14 +53,15 @@ ul.task-list{list-style: none;}
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
 
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Fangzhou Yu - Research">
-<meta property="og:description" content="Tests for Heterogeneous Treatment Effect">
 <meta property="og:site-name" content="Fangzhou Yu">
 <meta name="twitter:title" content="Fangzhou Yu - Research">
-<meta name="twitter:description" content="Tests for Heterogeneous Treatment Effect">
 <meta name="twitter:creator" content="@miryo87s">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -78,12 +79,12 @@ ul.task-list{list-style: none;}
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav navbar-nav-scroll me-auto">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html">Home</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./about.html">Curriculum Vitae</a>
+    <a class="nav-link" href="https://miryo87s.github.io/datadrivencv/cv.pdf">Curriculum Vitae</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link active" href="./research.html" aria-current="page">Research</a>
@@ -103,7 +104,10 @@ ul.task-list{list-style: none;}
     <h2 id="toc-title">Contents</h2>
    
   <ul>
-  <li><a href="#working-paper" id="toc-working-paper" class="nav-link active" data-scroll-target="#working-paper">Working Paper</a></li>
+  <li><a href="#working-papers" id="toc-working-papers" class="nav-link active" data-scroll-target="#working-papers">Working Papers</a>
+  <ul class="collapse">
+  <li><a href="#not-published-2022" id="toc-not-published-2022" class="nav-link" data-scroll-target="#not-published-2022">2022</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -126,12 +130,25 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<section id="working-paper" class="level2">
-<h2 class="anchored" data-anchor-id="working-paper">Working Paper</h2>
-<p>Tests for Heterogeneous Treatment Effect</p>
+<!-- ## Published -->
+<!-- ```{python} -->
+<!-- #| label: "published-year" -->
+<!-- #| id: "published-year" -->
+<!-- #| output: asis -->
+<!-- for year in sorted(pub_strs["pubs"].keys(), reverse=True): -->
+<!--     display(Markdown(f"### {year}" + "{#" + f"published-{year}" + "}")) -->
+<!--     display(HTML( -->
+<!--         "<ul class='list-group list-group-flush'>" + '\n'.join(pub_strs["pubs"][year]) + "</ul>" -->
+<!--     )) -->
+<!-- ``` -->
+<h2 id="working-papers" class="anchored">Working Papers</h2>
+<h3 id="not-published-2022" class="anchored">2022</h3>
+<ul class="list-group list-group-flush"><li class="list-group-item"><strong>Fangzhou Yu</strong>. (2022) "Tests for Heterogeneous Treatment Effects."<br><a class="btn btn-outline-dark btn-sm" ,="" href="https://www.dropbox.com/s/s3z4hd3p9f56u7c/Test.pdf?dl=0" target="_blank" rel="noopener noreferrer">
+        <i class="bi bi-file-earmark-pdf" role="img" aria-label="Draft"></i>
+        Draft
+    </a></li></ul>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

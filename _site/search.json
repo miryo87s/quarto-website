@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Fangzhou Yu",
     "section": "",
-    "text": "I am a PhD student in UNSW, Business School under supervision of Scientia Professor Robert Kohn and Associate Professor Seojeong Lee.\nMy main research interests include estimation and inference of heterogeneous treatment effect and the application of influence function in sensitivity analysis."
+    "text": "I am a PhD student in UNSW, Business School under supervision of Scientia Professor Robert Kohn and Associate Professor Seojeong (Jay) Lee.\nMy main research interests include estimation and inference of heterogeneous treatment effect and the application of influence functions in sensitivity analysis. I am also exploring the usefulness of semiparametric influence functions in structural equations."
   },
   {
     "objectID": "posts/post-with-code/index.html",
@@ -32,6 +32,6 @@
     "href": "research.html",
     "title": "Research",
     "section": "",
-    "text": "Tests for Heterogeneous Treatment Effect"
+    "text": "2022\nFangzhou Yu. (2022) \"Tests for Heterogeneous Treatment Effects.\"\n        \n        Draft"
   }
 ]
