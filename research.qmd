@@ -85,7 +85,7 @@ for _, data in yaml_data.items():
 <!--     )) -->
 <!-- ``` -->
 
-## Working Papers
+## Working Papers and Works in Progress
 
 ```{python}
 #| label: "not-published-year"
