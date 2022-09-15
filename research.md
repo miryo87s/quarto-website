@@ -26,7 +26,7 @@ keep-md: true
 ### 2022{#not-published-2022}
 
 ```{=html}
-<ul class='list-group list-group-flush'><li class='list-group-item'><strong>Fangzhou Yu</strong>. (2022) "Tests for Heterogeneous Treatment Effects."<br><a class="btn btn-outline-dark btn-sm", href="https://www.dropbox.com/s/20smw42a6194gnn/paper.pdf?dl=0" target="_blank" rel="noopener noreferrer">
+<ul class='list-group list-group-flush'><li class='list-group-item'><strong>Fangzhou Yu</strong>. (2022) "Tests for Heterogeneous Treatment Effects."<br><a class="btn btn-outline-dark btn-sm", href="https://www.dropbox.com/s/axnth7tzlb39bah/paper.pdf?dl=0" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-file-earmark-pdf" role='img' aria-label='Draft'></i>
         Draft
     </a></li></ul>
