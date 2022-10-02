@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="description" content="Causal Inference and Sensitivity Analysis">
 
-<title>Fangzhou Yu</title>
+<title>Fangzhou Yu - Blog</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -26,6 +25,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -54,16 +55,57 @@ ul.task-list{list-style: none;}
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-date','listing-title','listing-author','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-date","listing-title","listing-author","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="styles.css">
-<meta property="og:title" content="Fangzhou Yu">
-<meta property="og:description" content="Causal Inference and Sensitivity Analysis">
-<meta property="og:image" content="https://fzy.netlify.app/social-card.jpg">
+<link rel="alternate" type="application/rss+xml" title="Fangzhou Yu" href="post.xml"><meta property="og:title" content="Fangzhou Yu - Blog">
 <meta property="og:site-name" content="Fangzhou Yu">
-<meta name="twitter:title" content="Fangzhou Yu">
-<meta name="twitter:description" content="Causal Inference and Sensitivity Analysis">
-<meta name="twitter:image" content="https://fzy.netlify.app/social-card.jpg">
+<meta name="twitter:title" content="Fangzhou Yu - Blog">
 <meta name="twitter:creator" content="@miryo87s">
 <meta name="twitter:card" content="summary_large_image">
 </head>
@@ -83,7 +125,7 @@ ul.task-list{list-style: none;}
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
+    <a class="nav-link" href="./index.html">Home</a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="https://miryo87s.github.io/datadrivencv/cv.pdf">Curriculum Vitae</a>
@@ -92,7 +134,7 @@ ul.task-list{list-style: none;}
     <a class="nav-link" href="./research.html">Research</a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./post.html">Blog</a>
+    <a class="nav-link active" href="./post.html" aria-current="page">Blog</a>
   </li>  
 </ul>
               <div id="quarto-search" class="" title="Search"></div>
@@ -101,25 +143,20 @@ ul.task-list{list-style: none;}
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full page-navbar">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    </div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="memo">memo <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content page-columns page-full column-page-left" id="quarto-document-content">
+<main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Fangzhou Yu</h1>
+<h1 class="title">Blog</h1>
 </div>
 
-<div>
-  <div class="description">
-    Causal Inference and Sensitivity Analysis
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
@@ -131,31 +168,49 @@ ul.task-list{list-style: none;}
 
 </header>
 
-<div class="column-page-inset page-columns page-full">
-<div class="column-page-inset-left">
-<p>I am a PhD student in UNSW, Business School under supervision of Scientia Professor <a href="https://acems.org.au/our-people/robert-kohn">Robert Kohn</a> and Associate Professor <a href="https://sites.google.com/site/misspecifiedjay/">Seojeong (Jay) Lee</a>.</p>
-<p>My main research interests include estimation and inference of heterogeneous treatment effect and the application of influence functions in sensitivity analysis. I am also exploring the usefulness of semiparametric influence functions in structural equations.</p>
-</div>
-<div class="column-margin column-container">
-<p><img src="headshot.jpg" class="rounded img-fluid"></p>
-</div>
-</div>
-<div style="page-break-after: always;"></div>
-<div class="column-page-inset text-center">
-<a class="btn btn-outline-dark" ,="" href="https://twitter.com/miryo87s" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-twitter" role="img" aria-label="Twitter"></i>
-</a>
-<a class="btn btn-outline-dark" ,="" href="https://github.com/miryo87s" target="_blank" rel="noopener noreferrer">
-    <i class="bi bi-github" role="img" aria-label="Github"></i>
-</a>
-<a class="btn btn-outline-dark" ,="" href="z5173794@ad.unsw.edu.au" target="_blank" rel="noopener noreferrer">
-    <i class="ai bi-envelope" role="img" aria-label="email"></i>
-</a>
-</div>
 
 
 
-</main> <!-- /main -->
+
+<div class="quarto-listing quarto-listing-container-default" id="listing-listing">
+<div class="list quarto-listing-default">
+<div class="quarto-post image-right" data-index="0" data-categories="memo" data-listing-date-sort="1664632800000" data-listing-file-modified-sort="1664683809159" data-listing-reading-time-sort="0.9">
+<div class="body">
+<a href="./posts/Minor regression tricks/index.html">
+<h3 class="no-anchor listing-title">
+Small Tricks in Linear Regression
+</h3>
+<div class="listing-subtitle">
+
+</div>
+</a>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('memo'); return false;">
+memo
+</div>
+</div>
+<a href="./posts/Minor regression tricks/index.html">
+<div class="listing-description">
+<p>I am using this post as a memo for some tricks in linear regressions.</p>
+</div>
+</a>
+</div>
+<div class="metadata">
+<a href="./posts/Minor regression tricks/index.html">
+<div class="listing-date">
+Oct 2, 2022
+</div>
+<div class="listing-author">
+Fangzhou Yu
+</div>
+</a>
+</div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

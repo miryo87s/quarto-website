@@ -1,8 +1,19 @@
-# options specified here will apply to all posts in this folder
+# options apply to all posts in this folder
 
 # freeze computational output
-# (see https://quarto.org/docs/projects/code-execution.html#freeze)
-freeze: true
+freeze: auto
 
-# Enable banner style title blocks
+# Make a big title block
 title-block-banner: true
+
+# long dates
+date-format: long
+
+# smooth scroll
+smooth-scroll: true
+
+# Default author
+author:
+  - name: Fangzhou Yu
+    url: https://fangzhou.netlify.app
+    affiliation: University of New South Wales

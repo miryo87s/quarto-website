@@ -2,14 +2,22 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://fzy.netlify.app/index.html</loc>
-    <lastmod>2022-09-15T06:27:55.801Z</lastmod>
+    <lastmod>2022-10-02T04:57:10.203Z</lastmod>
   </url>
   <url>
     <loc>https://fzy.netlify.app/research.html</loc>
-    <lastmod>2022-09-15T06:27:59.523Z</lastmod>
+    <lastmod>2022-10-02T04:10:19.862Z</lastmod>
   </url>
   <url>
     <loc>https://fzy.netlify.app/about.html</loc>
     <lastmod>2022-09-02T05:31:32.902Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fzy.netlify.app/posts/Minor regression tricks/index.html</loc>
+    <lastmod>2022-10-02T04:57:35.163Z</lastmod>
+  </url>
+  <url>
+    <loc>https://fzy.netlify.app/post.html</loc>
+    <lastmod>2022-10-02T04:10:25.556Z</lastmod>
   </url>
 </urlset>

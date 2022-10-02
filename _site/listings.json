@@ -5,5 +5,11 @@
       "/posts/post-with-code/index.html",
       "/posts/welcome/index.html"
     ]
+  },
+  {
+    "listing": "/post.html",
+    "items": [
+      "/posts/Minor regression tricks/index.html"
+    ]
   }
 ]

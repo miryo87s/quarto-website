@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Fangzhou Yu</title>
+<link>https://fzy.netlify.app/post.html</link>
+<atom:link href="https://fzy.netlify.app/post.xml" rel="self" type="application/rss+xml"/>
+<description>Personal website of Fangzhou Yu</description>
+<generator>quarto-1.0.37</generator>
+<lastBuildDate>Sat, 01 Oct 2022 14:00:00 GMT</lastBuildDate>
+<item>
+  <title>Small Tricks in Linear Regression</title>
+  <dc:creator>Fangzhou Yu</dc:creator>
+  <link>https://fzy.netlify.app/posts/Minor regression tricks/index.html</link>
+  <description><![CDATA[ 
+
+
+
+
+<div class="cell">
+
+</div>
+<section id="estimates-and-se-of-some-sample-mean" class="level1">
+<h1>Estimates and SE of Some Sample Mean</h1>
+<p>Sometimes we are interested in statistics <img src="https://latex.codecogs.com/png.latex?%5Ctheta"> that can be estimated by the sample mean of some function</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Chat%5Ctheta%20=%20%5Cfrac1n%20%5Csum_i%20f(W_i)%0A"></p>
+<p>For example, <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta"> is the MSE of a predictor <img src="https://latex.codecogs.com/png.latex?%5Chat%7Bg%7D(X_i)"> of <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BE%7D%5BY_i%7CX_i%5D"></p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Chat%5Ctheta%20=%20%5Cfrac1n%20%5Csum_i%20(Y_i%20-%20%5Chat%7Bg%7D(X_i))%5E2%0A"></p>
+<p>with <img src="https://latex.codecogs.com/png.latex?f(W_i)%20=%20(Y_i%20-%20%5Chat%7Bg%7D(X_i))%5E2"></p>
+<p>Calculating <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta"> is simple but obtaining the standard error of <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta"> requires extra efforts. In this case, we can utilize the convenient linear regression functions in statistical softwares. The sample mean of some function <img src="https://latex.codecogs.com/png.latex?f(X_i)"> is equivalent to regressing <img src="https://latex.codecogs.com/png.latex?f(X_i)"> on a vector of <img src="https://latex.codecogs.com/png.latex?1">.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">n <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1000</span></span>
+<span id="cb1-2">X <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
+<span id="cb1-3">Y <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1</span> <span class="sc" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">2</span> <span class="sc" style="color: #5E5E5E;">*</span> X <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
+<span id="cb1-4"></span>
+<span id="cb1-5">mod <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">lm</span>(Y <span class="sc" style="color: #5E5E5E;">~</span> X)</span>
+<span id="cb1-6">gX <span class="ot" style="color: #003B4F;">&lt;-</span> mod<span class="sc" style="color: #5E5E5E;">$</span>fitted.values</span>
+<span id="cb1-7"></span>
+<span id="cb1-8"><span class="co" style="color: #5E5E5E;"># MSE by sample mean </span></span>
+<span id="cb1-9">mse <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">mean</span>((Y <span class="sc" style="color: #5E5E5E;">-</span> gX)<span class="sc" style="color: #5E5E5E;">^</span><span class="dv" style="color: #AD0000;">2</span>)</span>
+<span id="cb1-10"><span class="fu" style="color: #4758AB;">cat</span>(<span class="st" style="color: #20794D;">"The MSE of gX is"</span>, mse)</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>The MSE of gX is 0.987445</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;"># MSE by linear regression</span></span>
+<span id="cb3-2">mse.lm <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">lm</span>((Y <span class="sc" style="color: #5E5E5E;">-</span> gX)<span class="sc" style="color: #5E5E5E;">^</span><span class="dv" style="color: #AD0000;">2</span> <span class="sc" style="color: #5E5E5E;">~</span> <span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">summary</span>()</span>
+<span id="cb3-3"><span class="fu" style="color: #4758AB;">cat</span>(<span class="st" style="color: #20794D;">"The MSE of gX by linear regression is"</span>, mse.lm<span class="sc" style="color: #5E5E5E;">$</span>coef[<span class="dv" style="color: #AD0000;">1</span>], <span class="st" style="color: #20794D;">"with SE"</span>, mse.lm<span class="sc" style="color: #5E5E5E;">$</span>coef[<span class="dv" style="color: #AD0000;">2</span>])</span></code></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>The MSE of gX by linear regression is 0.987445 with SE 0.04568071</code></pre>
+</div>
+</div>
+
+
+</section>
+
+ ]]></description>
+  <category>memo</category>
+  <guid>https://fzy.netlify.app/posts/Minor regression tricks/index.html</guid>
+  <pubDate>Sat, 01 Oct 2022 14:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
