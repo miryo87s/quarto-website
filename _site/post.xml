@@ -29,33 +29,85 @@
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Chat%5Ctheta%20=%20%5Cfrac1n%20%5Csum_i%20f(W_i)%0A"></p>
 <p>For example, <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta"> is the MSE of a predictor <img src="https://latex.codecogs.com/png.latex?%5Chat%7Bg%7D(X_i)"> of <img src="https://latex.codecogs.com/png.latex?%5Cmathbb%7BE%7D%5BY_i%7CX_i%5D"></p>
 <p><img src="https://latex.codecogs.com/png.latex?%0A%5Chat%5Ctheta%20=%20%5Cfrac1n%20%5Csum_i%20(Y_i%20-%20%5Chat%7Bg%7D(X_i))%5E2%0A"></p>
-<p>with <img src="https://latex.codecogs.com/png.latex?f(W_i)%20=%20(Y_i%20-%20%5Chat%7Bg%7D(X_i))%5E2"></p>
-<p>Calculating <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta"> is simple but obtaining the standard error of <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta"> requires extra efforts. In this case, we can utilize the convenient linear regression functions in statistical softwares. The sample mean of some function <img src="https://latex.codecogs.com/png.latex?f(X_i)"> is equivalent to regressing <img src="https://latex.codecogs.com/png.latex?f(X_i)"> on a vector of <img src="https://latex.codecogs.com/png.latex?1">.</p>
+<p>with <img src="https://latex.codecogs.com/png.latex?f(W_i)%20=%20(Y_i%20-%20%5Chat%7Bg%7D(X_i))%5E2">.</p>
+<p>Calculating <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta"> is simple but obtaining the standard error of <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta"> requires extra efforts. In this case, we can utilize the convenient linear regression functions in statistical softwares. The sample mean of some function <img src="https://latex.codecogs.com/png.latex?f(W_i)"> is equivalent to regressing <img src="https://latex.codecogs.com/png.latex?f(W_i)"> on a vector of <img src="https://latex.codecogs.com/png.latex?1">.</p>
 <div class="cell">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1">n <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1000</span></span>
-<span id="cb1-2">X <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
-<span id="cb1-3">Y <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1</span> <span class="sc" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">2</span> <span class="sc" style="color: #5E5E5E;">*</span> X <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
-<span id="cb1-4"></span>
-<span id="cb1-5">mod <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">lm</span>(Y <span class="sc" style="color: #5E5E5E;">~</span> X)</span>
-<span id="cb1-6">gX <span class="ot" style="color: #003B4F;">&lt;-</span> mod<span class="sc" style="color: #5E5E5E;">$</span>fitted.values</span>
-<span id="cb1-7"></span>
-<span id="cb1-8"><span class="co" style="color: #5E5E5E;"># MSE by sample mean </span></span>
-<span id="cb1-9">mse <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">mean</span>((Y <span class="sc" style="color: #5E5E5E;">-</span> gX)<span class="sc" style="color: #5E5E5E;">^</span><span class="dv" style="color: #AD0000;">2</span>)</span>
-<span id="cb1-10"><span class="fu" style="color: #4758AB;">cat</span>(<span class="st" style="color: #20794D;">"The MSE of gX is"</span>, mse)</span></code></pre></div>
-</details>
+<div class="sourceCode cell-code" id="cb1" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><span class="fu" style="color: #4758AB;">set.seed</span>(<span class="dv" style="color: #AD0000;">1</span>)</span>
+<span id="cb1-2"></span>
+<span id="cb1-3">n <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1000</span></span>
+<span id="cb1-4">X <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
+<span id="cb1-5">Y <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1</span> <span class="sc" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">2</span> <span class="sc" style="color: #5E5E5E;">*</span> X <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
+<span id="cb1-6"></span>
+<span id="cb1-7">mod <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">lm</span>(Y <span class="sc" style="color: #5E5E5E;">~</span> X)</span>
+<span id="cb1-8">gX <span class="ot" style="color: #003B4F;">&lt;-</span> mod<span class="sc" style="color: #5E5E5E;">$</span>fitted.values</span>
+<span id="cb1-9"></span>
+<span id="cb1-10"><span class="co" style="color: #5E5E5E;"># MSE by sample mean </span></span>
+<span id="cb1-11">mse <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">mean</span>((Y <span class="sc" style="color: #5E5E5E;">-</span> gX)<span class="sc" style="color: #5E5E5E;">^</span><span class="dv" style="color: #AD0000;">2</span>)</span>
+<span id="cb1-12"><span class="fu" style="color: #4758AB;">cat</span>(<span class="st" style="color: #20794D;">"The MSE of gX is"</span>, mse)</span></code></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The MSE of gX is 0.987445</code></pre>
+<pre><code>The MSE of gX is 1.080436</code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><span class="co" style="color: #5E5E5E;"># MSE by linear regression</span></span>
 <span id="cb3-2">mse.lm <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">lm</span>((Y <span class="sc" style="color: #5E5E5E;">-</span> gX)<span class="sc" style="color: #5E5E5E;">^</span><span class="dv" style="color: #AD0000;">2</span> <span class="sc" style="color: #5E5E5E;">~</span> <span class="dv" style="color: #AD0000;">1</span>) <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">summary</span>()</span>
 <span id="cb3-3"><span class="fu" style="color: #4758AB;">cat</span>(<span class="st" style="color: #20794D;">"The MSE of gX by linear regression is"</span>, mse.lm<span class="sc" style="color: #5E5E5E;">$</span>coef[<span class="dv" style="color: #AD0000;">1</span>], <span class="st" style="color: #20794D;">"with SE"</span>, mse.lm<span class="sc" style="color: #5E5E5E;">$</span>coef[<span class="dv" style="color: #AD0000;">2</span>])</span></code></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
-<pre><code>The MSE of gX by linear regression is 0.987445 with SE 0.04568071</code></pre>
+<pre><code>The MSE of gX by linear regression is 1.080436 with SE 0.04810917</code></pre>
+</div>
+</div>
+<p>By this linear regression trick, we can easily obtain <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta"> and its standard error. The estimator by linear regression is equivalent to the sample mean and is always consistent. However, if there is an estimator in <img src="https://latex.codecogs.com/png.latex?f(W_i)"> such as <img src="https://latex.codecogs.com/png.latex?%5Chat%7Bg%7D(X_i)"> in the MSE example, to ensure the standard error is correct, we need <img src="https://latex.codecogs.com/png.latex?f(W_i)"> to satisfy</p>
+<p><span id="eq-ortho"><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BE%7D%5B%5Cpartial_%5Cgamma%20f(W_i)%5D%20=%200%0A%5Ctag%7B1%7D"></span></p>
+<p>where <img src="https://latex.codecogs.com/png.latex?%5Cgamma"> is the parameter in <img src="https://latex.codecogs.com/png.latex?g(X_i)"> with <img src="https://latex.codecogs.com/png.latex?%5Chat%7Bg%7D(X_i)%20=%20g(X_i,%20%5Chat%5Cgamma)">. This is because we need to take into account the estimation error in <img src="https://latex.codecogs.com/png.latex?%5Chat%7Bg%7D(X_i)"> when calculating the standard error of <img src="https://latex.codecogs.com/png.latex?%5Chat%5Ctheta">, but this estimation error does not affect <img src="https://latex.codecogs.com/png.latex?f(W_i)"> if Equation&nbsp;1 is satisfied (partial derivative is 0).</p>
+<p>In the MSE example, <img src="https://latex.codecogs.com/png.latex?%5Chat%7Bg%7D(X_i)%20=%20X_i%5Chat%5Cgamma"> and <img src="https://latex.codecogs.com/png.latex?f(W_i)%20=%20(Y_i%20-%20X_i%5Cgamma)%5E2">. Then</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cmathbb%7BE%7D%5B%5Cpartial_%5Cgamma%20f(W_i)%5D%20=%20%5Cmathbb%7BE%7D%5B-X_i'(Y_i%20-%20X_i%5Cgamma)%5D%20=%200%0A"></p>
+<p>by the exogeneity of <img src="https://latex.codecogs.com/png.latex?X">. So the standard error in the MSE example is correct.</p>
+</section>
+<section id="regression-across-different-samples" class="level1">
+<h1>Regression across Different Samples</h1>
+<p>Sometimes, we may want to compare coefficients in two different regressions. In this case, a formal hypothesis test is hard to implement because we need a variance-covariance matrix of the coefficients in different regressions. One easy solution is to trick statistical softwares to run two regression at one time by stacking the two regressions.</p>
+<p>Suppose we want to compare the coefficients <img src="https://latex.codecogs.com/png.latex?%5Calpha"> and <img src="https://latex.codecogs.com/png.latex?%5Cbeta"> in regressions</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0AY%20=%20X%5Calpha%20+%20%5Cepsilon,%20%5Cquad%20%5Cquad%20Z%20=%20D%5Cbeta%20+%20%5Cnu%0A"></p>
+<p>We can stack the two samples and obtain a long response variable <img src="https://latex.codecogs.com/png.latex?(Y',%20Z')'"> and a large design matrix</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bpmatrix%7D%0AX%20&amp;%200%20%5C%5C%0A0%20&amp;%20D%0A%5Cend%7Bpmatrix%7D%0A"></p>
+<p>so that we have</p>
+<p><img src="https://latex.codecogs.com/png.latex?%0A%5Cbegin%7Bpmatrix%7D%20Y%20%5C%5C%20Z%20%5Cend%7Bpmatrix%7D%20=%20%5Cbegin%7Bpmatrix%7D%20X%20&amp;%200%20%5C%5C%200%20&amp;%20D%20%5Cend%7Bpmatrix%7D%20%5Cbegin%7Bpmatrix%7D%20%5Calpha%20%5C%5C%20%5Cbeta%20%5Cend%7Bpmatrix%7D%20+%20%5Cbegin%7Bpmatrix%7D%20%5Cepsilon%20%5C%5C%20%5Cnu%20%5Cend%7Bpmatrix%7D%0A"></p>
+<p>By running this stacked regression, we are able to obtain the variance-covariance matrix of <img src="https://latex.codecogs.com/png.latex?%5Chat%5Calpha"> and <img src="https://latex.codecogs.com/png.latex?%5Chat%5Cbeta">, which is essential to conduct hypothesis tests on <img src="https://latex.codecogs.com/png.latex?alpha"> and <img src="https://latex.codecogs.com/png.latex?%5Cbeta"></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><span class="fu" style="color: #4758AB;">set.seed</span>(<span class="dv" style="color: #AD0000;">1</span>)</span>
+<span id="cb5-2"></span>
+<span id="cb5-3">n <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1000</span></span>
+<span id="cb5-4">X <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
+<span id="cb5-5">D <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
+<span id="cb5-6"></span>
+<span id="cb5-7">Y <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1</span> <span class="sc" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">2</span> <span class="sc" style="color: #5E5E5E;">*</span> X <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
+<span id="cb5-8">Z <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="dv" style="color: #AD0000;">1</span> <span class="sc" style="color: #5E5E5E;">+</span> <span class="dv" style="color: #AD0000;">3</span> <span class="sc" style="color: #5E5E5E;">*</span> D <span class="sc" style="color: #5E5E5E;">+</span> <span class="fu" style="color: #4758AB;">rnorm</span>(n)</span>
+<span id="cb5-9"></span>
+<span id="cb5-10"><span class="co" style="color: #5E5E5E;"># Run two separate regressions of Y and Z</span></span>
+<span id="cb5-11"><span class="fu" style="color: #4758AB;">summary</span>(<span class="fu" style="color: #4758AB;">lm</span>(Y <span class="sc" style="color: #5E5E5E;">~</span> X))<span class="sc" style="color: #5E5E5E;">$</span>coef[<span class="dv" style="color: #AD0000;">2</span>, <span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="dv" style="color: #AD0000;">2</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Estimate Std. Error 
+2.04919046 0.03149948 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><span class="fu" style="color: #4758AB;">summary</span>(<span class="fu" style="color: #4758AB;">lm</span>(Z <span class="sc" style="color: #5E5E5E;">~</span> D))<span class="sc" style="color: #5E5E5E;">$</span>coef[<span class="dv" style="color: #AD0000;">2</span>, <span class="dv" style="color: #AD0000;">1</span><span class="sc" style="color: #5E5E5E;">:</span><span class="dv" style="color: #AD0000;">2</span>]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Estimate Std. Error 
+3.01551672 0.03161022 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><span class="co" style="color: #5E5E5E;"># Run stacked regression</span></span>
+<span id="cb9-2">long.response <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">c</span>(Y, Z)</span>
+<span id="cb9-3">large.design <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">rbind</span>(<span class="fu" style="color: #4758AB;">cbind</span>(<span class="dv" style="color: #AD0000;">1</span>, X, <span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">0</span>), <span class="fu" style="color: #4758AB;">cbind</span>(<span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">0</span>, <span class="dv" style="color: #AD0000;">1</span>, D))</span>
+<span id="cb9-4">df <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">data.frame</span>(long.response, large.design)</span>
+<span id="cb9-5"></span>
+<span id="cb9-6">stacked <span class="ot" style="color: #003B4F;">&lt;-</span> <span class="fu" style="color: #4758AB;">lm</span>(long.response <span class="sc" style="color: #5E5E5E;">~</span> . <span class="sc" style="color: #5E5E5E;">-</span> <span class="dv" style="color: #AD0000;">1</span>, <span class="at" style="color: #657422;">data =</span> df)</span>
+<span id="cb9-7">stacked<span class="sc" style="color: #5E5E5E;">$</span>coefficients[<span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">2</span>, <span class="dv" style="color: #AD0000;">4</span>)]</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       X       V4 
+2.049190 3.015517 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11" style="background: #f1f3f5;"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><span class="fu" style="color: #4758AB;">vcovHC</span>(stacked, <span class="at" style="color: #657422;">type =</span> <span class="st" style="color: #20794D;">"const"</span>, <span class="at" style="color: #657422;">cluster =</span> <span class="fu" style="color: #4758AB;">c</span>(<span class="fu" style="color: #4758AB;">rep</span>(<span class="dv" style="color: #AD0000;">1</span>, n), <span class="fu" style="color: #4758AB;">rep</span>(<span class="dv" style="color: #AD0000;">0</span>, n)))[<span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">2</span>, <span class="dv" style="color: #AD0000;">4</span>), <span class="fu" style="color: #4758AB;">c</span>(<span class="dv" style="color: #AD0000;">2</span>, <span class="dv" style="color: #AD0000;">4</span>)] <span class="sc" style="color: #5E5E5E;">|&gt;</span> <span class="fu" style="color: #4758AB;">sqrt</span>()</span></code></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            X         V4
+X  0.03163249 0.00000000
+V4 0.00000000 0.03147841</code></pre>
 </div>
 </div>
 

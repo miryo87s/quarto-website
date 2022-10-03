@@ -238,6 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#estimates-and-se-of-some-sample-mean" id="toc-estimates-and-se-of-some-sample-mean" class="nav-link active" data-scroll-target="#estimates-and-se-of-some-sample-mean">Estimates and SE of Some Sample Mean</a></li>
+  <li><a href="#regression-across-different-samples" id="toc-regression-across-different-samples" class="nav-link" data-scroll-target="#regression-across-different-samples">Regression across Different Samples</a></li>
   </ul>
 </nav>
     </div>
@@ -263,24 +264,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>with <span class="math inline">f(W_i) = (Y_i - \hat{g}(X_i))^2</span>.</p>
 <p>Calculating <span class="math inline">\hat\theta</span> is simple but obtaining the standard error of <span class="math inline">\hat\theta</span> requires extra efforts. In this case, we can utilize the convenient linear regression functions in statistical softwares. The sample mean of some function <span class="math inline">f(W_i)</span> is equivalent to regressing <span class="math inline">f(W_i)</span> on a vector of <span class="math inline">1</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> X <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>gX <span class="ot">&lt;-</span> mod<span class="sc">$</span>fitted.values</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># MSE by sample mean </span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((Y <span class="sc">-</span> gX)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The MSE of gX is"</span>, mse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> X <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>mod <span class="ot">&lt;-</span> <span class="fu">lm</span>(Y <span class="sc">~</span> X)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>gX <span class="ot">&lt;-</span> mod<span class="sc">$</span>fitted.values</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co"># MSE by sample mean </span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>mse <span class="ot">&lt;-</span> <span class="fu">mean</span>((Y <span class="sc">-</span> gX)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The MSE of gX is"</span>, mse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The MSE of gX is 1.017052</code></pre>
+<pre><code>The MSE of gX is 1.080436</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MSE by linear regression</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>mse.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>((Y <span class="sc">-</span> gX)<span class="sc">^</span><span class="dv">2</span> <span class="sc">~</span> <span class="dv">1</span>) <span class="sc">|&gt;</span> <span class="fu">summary</span>()</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="st">"The MSE of gX by linear regression is"</span>, mse.lm<span class="sc">$</span>coef[<span class="dv">1</span>], <span class="st">"with SE"</span>, mse.lm<span class="sc">$</span>coef[<span class="dv">2</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>The MSE of gX by linear regression is 1.017052 with SE 0.04521557</code></pre>
+<pre><code>The MSE of gX by linear regression is 1.080436 with SE 0.04810917</code></pre>
 </div>
 </div>
 <p>By this linear regression trick, we can easily obtain <span class="math inline">\hat\theta</span> and its standard error. The estimator by linear regression is equivalent to the sample mean and is always consistent. However, if there is an estimator in <span class="math inline">f(W_i)</span> such as <span class="math inline">\hat{g}(X_i)</span> in the MSE example, to ensure the standard error is correct, we need <span class="math inline">f(W_i)</span> to satisfy</p>
@@ -293,6 +296,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \mathbb{E}[\partial_\gamma f(W_i)] = \mathbb{E}[-X_i'(Y_i - X_i\gamma)] = 0
 </span></p>
 <p>by the exogeneity of <span class="math inline">X</span>. So the standard error in the MSE example is correct.</p>
+</section>
+<section id="regression-across-different-samples" class="level1">
+<h1>Regression across Different Samples</h1>
+<p>Sometimes, we may want to compare coefficients in two different regressions. In this case, a formal hypothesis test is hard to implement because we need a variance-covariance matrix of the coefficients in different regressions. One easy solution is to trick statistical softwares to run two regression at one time by stacking the two regressions.</p>
+<p>Suppose we want to compare the coefficients <span class="math inline">\alpha</span> and <span class="math inline">\beta</span> in regressions</p>
+<p><span class="math display">
+Y = X\alpha + \epsilon, \quad \quad Z = D\beta + \nu
+</span></p>
+<p>We can stack the two samples and obtain a long response variable <span class="math inline">(Y', Z')'</span> and a large design matrix</p>
+<p><span class="math display">
+\begin{pmatrix}
+X &amp; 0 \\
+0 &amp; D
+\end{pmatrix}
+</span></p>
+<p>so that we have</p>
+<p><span class="math display">
+\begin{pmatrix} Y \\ Z \end{pmatrix} = \begin{pmatrix} X &amp; 0 \\ 0 &amp; D \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} + \begin{pmatrix} \epsilon \\ \nu \end{pmatrix}
+</span></p>
+<p>By running this stacked regression, we are able to obtain the variance-covariance matrix of <span class="math inline">\hat\alpha</span> and <span class="math inline">\hat\beta</span>, which is essential to conduct hypothesis tests on <span class="math inline">\alpha</span> and <span class="math inline">\beta</span></p>
+<p>One advantage of this method is that, using stacked regression, we can recover the OLS estimates of <span class="math inline">\alpha</span> and <span class="math inline">\beta</span> in the separate regressions (but other methods such as Seemingly Unrelated Regression cannot. Note clustered standard error is recommended for the stacked regression if there is overlap between the two datasets</p>
 
 
 </section>

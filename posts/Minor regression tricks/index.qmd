@@ -11,7 +11,7 @@ code-fold: false
 
 
 ```{r load_packages, echo=FALSE}
-librarian::shelf(sandwich, quiet = T)
+librarian::shelf(sandwich, lmtest, quiet = T)
 ```
 
 # Estimates and SE of Some Sample Mean
@@ -29,6 +29,8 @@ with $f(W_i) = (Y_i - \hat{g}(X_i))^2$.
 Calculating $\hat\theta$ is simple but obtaining the standard error of $\hat\theta$ requires extra efforts. In this case, we can utilize the convenient linear regression functions in statistical softwares. The sample mean of some function $f(W_i)$ is equivalent to regressing $f(W_i)$ on a vector of $1$.
 
 ```{r mse}
+
+set.seed(1)
 
 n <- 1000
 X <- rnorm(n)
@@ -57,6 +59,31 @@ $$
 \mathbb{E}[\partial_\gamma f(W_i)] = \mathbb{E}[-X_i'(Y_i - X_i\gamma)] = 0
 $$
 by the exogeneity of $X$. So the standard error in the MSE example is correct.
+
+# Regression across Different Samples
+
+Sometimes, we may want to compare coefficients in two different regressions. In this case, a formal hypothesis test is hard to implement because we need a variance-covariance matrix of the coefficients in different regressions. One easy solution is to trick statistical softwares to run two regression at one time by stacking the two regressions.
+
+Suppose we want to compare the coefficients $\alpha$ and $\beta$ in regressions
+$$
+Y = X\alpha + \epsilon, \quad \quad Z = D\beta + \nu
+$$
+We can stack the two samples and obtain a long response variable $(Y', Z')'$ and a large design matrix
+$$
+\begin{pmatrix}
+X & 0 \\
+0 & D
+\end{pmatrix}
+$$
+so that we have
+$$
+\begin{pmatrix} Y \\ Z \end{pmatrix} = \begin{pmatrix} X & 0 \\ 0 & D \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} + \begin{pmatrix} \epsilon \\ \nu \end{pmatrix}
+$$
+By running this stacked regression, we are able to obtain the variance-covariance matrix of $\hat\alpha$ and $\hat\beta$, which is essential to conduct hypothesis tests on $\alpha$ and $\beta$
+
+One advantage of this method is that, using stacked regression, we can recover the OLS estimates of $\alpha$ and $\beta$ in the separate regressions (but other methods such as Seemingly Unrelated Regression cannot. Note clustered standard error is recommended for the stacked regression if there is overlap between the two datasets
+
+
 
 
 
