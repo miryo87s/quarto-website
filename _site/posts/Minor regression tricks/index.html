@@ -238,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#estimates-and-se-of-some-sample-mean" id="toc-estimates-and-se-of-some-sample-mean" class="nav-link active" data-scroll-target="#estimates-and-se-of-some-sample-mean">Estimates and SE of Some Sample Mean</a></li>
-  <li><a href="#regression-across-different-samples" id="toc-regression-across-different-samples" class="nav-link" data-scroll-target="#regression-across-different-samples">Regression across Different Samples</a></li>
+  <li><a href="#multiple-regression-at-one" id="toc-multiple-regression-at-one" class="nav-link" data-scroll-target="#multiple-regression-at-one">Multiple regression at one</a></li>
   </ul>
 </nav>
     </div>
@@ -297,8 +297,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </span></p>
 <p>by the exogeneity of <span class="math inline">X</span>. So the standard error in the MSE example is correct.</p>
 </section>
-<section id="regression-across-different-samples" class="level1">
-<h1>Regression across Different Samples</h1>
+<section id="multiple-regression-at-one" class="level1">
+<h1>Multiple regression at one</h1>
 <p>Sometimes, we may want to compare coefficients in two different regressions. In this case, a formal hypothesis test is hard to implement because we need a variance-covariance matrix of the coefficients in different regressions. One easy solution is to trick statistical softwares to run two regression at one time by stacking the two regressions.</p>
 <p>Suppose we want to compare the coefficients <span class="math inline">\alpha</span> and <span class="math inline">\beta</span> in regressions</p>
 <p><span class="math display">
@@ -315,8 +315,40 @@ X &amp; 0 \\
 <p><span class="math display">
 \begin{pmatrix} Y \\ Z \end{pmatrix} = \begin{pmatrix} X &amp; 0 \\ 0 &amp; D \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} + \begin{pmatrix} \epsilon \\ \nu \end{pmatrix}
 </span></p>
-<p>By running this stacked regression, we are able to obtain the variance-covariance matrix of <span class="math inline">\hat\alpha</span> and <span class="math inline">\hat\beta</span>, which is essential to conduct hypothesis tests on <span class="math inline">\alpha</span> and <span class="math inline">\beta</span></p>
-<p>One advantage of this method is that, using stacked regression, we can recover the OLS estimates of <span class="math inline">\alpha</span> and <span class="math inline">\beta</span> in the separate regressions (but other methods such as Seemingly Unrelated Regression cannot. Note clustered standard error is recommended for the stacked regression if there is overlap between the two datasets</p>
+<p>By running this stacked regression, we are able to obtain the variance-covariance matrix of <span class="math inline">\hat\alpha</span> and <span class="math inline">\hat\beta</span>, which is essential to conduct hypothesis tests on <span class="math inline">\alpha</span> and <span class="math inline">\beta</span>.</p>
+<p>One advantage of this method is that, using stacked regression, we can recover the OLS estimates of <span class="math inline">\alpha</span> and <span class="math inline">\beta</span> in the separate regressions (Seemingly Unrelated Regression can do the same task but cannot always recover OLS estimates). <strong>Note clustered standard error is recommended for the stacked regression</strong> and this method can be extended to IV regressions (or a combination of IV and OLS) by regarding OLS as a special case of IV where the regressors are instrumented by themselves. Below is an example using the dataset of High School and Beyond survey.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>hsb2 <span class="ot">&lt;-</span> foreign<span class="sc">::</span><span class="fu">read.dta</span>(<span class="st">"https://stats.idre.ucla.edu/stat/stata/notes/hsb2.dta"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>hsb2<span class="sc">$</span>female <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(hsb2<span class="sc">$</span>female <span class="sc">==</span> <span class="st">"female"</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>hsb2<span class="sc">$</span>ses <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(hsb2<span class="sc">$</span>ses)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate regressions</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(read <span class="sc">~</span> female <span class="sc">+</span> ses <span class="sc">+</span> socst, <span class="at">data =</span> hsb2))<span class="sc">$</span>coef[<span class="dv">2</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Estimate Std. Error 
+ -1.511128   1.151079 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(math <span class="sc">~</span> female <span class="sc">+</span> ses <span class="sc">+</span> science, <span class="at">data =</span> hsb2))<span class="sc">$</span>coef[<span class="dv">2</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Estimate Std. Error 
+  1.160903   1.041641 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stacked regression</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>read.math <span class="ot">&lt;-</span> <span class="fu">with</span>(hsb2, <span class="fu">c</span>(read, math))</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(hsb2 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="st">"female"</span>, <span class="st">"ses"</span>, <span class="st">"socst"</span>), <span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(hsb2) <span class="sc">*</span> <span class="dv">3</span>), <span class="fu">nrow</span>(hsb2), <span class="dv">3</span>))</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>D <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">matrix</span>(<span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(hsb2) <span class="sc">*</span> <span class="dv">3</span>), <span class="fu">nrow</span>(hsb2), <span class="dv">3</span>), hsb2 <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="st">"female"</span>, <span class="st">"ses"</span>, <span class="st">"science"</span>))</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(read.math, <span class="fu">rbind</span>(<span class="fu">as.matrix</span>(X), <span class="fu">as.matrix</span>(D))) <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(<span class="fu">c</span>(<span class="st">"rm"</span>, <span class="st">"female.r"</span>, <span class="st">"ses.r"</span>, <span class="st">"socst"</span>, <span class="st">"female.m"</span>, <span class="st">"ses.m"</span>, <span class="st">"science"</span>))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>sid <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(hsb2)), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(hsb2)))</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>stacked <span class="ot">&lt;-</span> <span class="fu">lm</span>(rm <span class="sc">~</span> ., <span class="at">data =</span> df)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">vcov</span>(stacked, <span class="at">type =</span> <span class="st">"const"</span>, <span class="at">cluster =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(hsb2)), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(hsb2))))[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>), <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             female.r     female.m
+female.r 1.205347e+00 2.701477e-15
+female.m 2.701477e-15 1.204577e+00</code></pre>
+</div>
+</div>
 
 
 </section>
