@@ -11,7 +11,7 @@ code-fold: false
 
 
 ```{r load_packages, echo=FALSE}
-librarian::shelf(sandwich, lmtest, dplyr, quiet = T)
+librarian::shelf(sandwich, lmtest, dplyr, systemfit, quiet = T)
 ```
 
 # Estimates and SE of Some Sample Mean
@@ -79,9 +79,7 @@ so that we have
 $$
 \begin{pmatrix} Y \\ Z \end{pmatrix} = \begin{pmatrix} X & 0 \\ 0 & D \end{pmatrix} \begin{pmatrix} \alpha \\ \beta \end{pmatrix} + \begin{pmatrix} \epsilon \\ \nu \end{pmatrix}
 $$
-By running this stacked regression, we are able to obtain the variance-covariance matrix of $\hat\alpha$ and $\hat\beta$, which is essential to conduct hypothesis tests on $\alpha$ and $\beta$.
-
-One advantage of this method is that, using stacked regression, we can recover the OLS estimates of $\alpha$ and $\beta$ in the separate regressions (Seemingly Unrelated Regression can do the same task but cannot always recover OLS estimates). **Note clustered standard error is recommended for the stacked regression** and this method can be extended to IV regressions (or a combination of IV and OLS) by regarding OLS as a special case of IV where the regressors are instrumented by themselves. Below is an example using the dataset of High School and Beyond survey.
+By running this stacked regression, we are able to estimate $\alpha$ and $\beta$ at the same time and obtain their variance-covariance matrix. **Note clustered standard error is recommended for the stacked regression**. This trick is similar to Seemingly Unrelated Regression (SUR), but the benefit is that this method can be extended to IV regressions (or a combination of IV and OLS) by regarding OLS as a special case of IV where the regressors are instrumented by themselves. Below is an example using the dataset of High School and Beyond survey.
 
 ```{r stacked}
 
