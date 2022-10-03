@@ -238,7 +238,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
    
   <ul>
   <li><a href="#estimates-and-se-of-some-sample-mean" id="toc-estimates-and-se-of-some-sample-mean" class="nav-link active" data-scroll-target="#estimates-and-se-of-some-sample-mean">Estimates and SE of Some Sample Mean</a></li>
-  <li><a href="#multiple-regression-at-one" id="toc-multiple-regression-at-one" class="nav-link" data-scroll-target="#multiple-regression-at-one">Multiple regression at one</a></li>
+  <li><a href="#multiple-regressions-at-one-time" id="toc-multiple-regressions-at-one-time" class="nav-link" data-scroll-target="#multiple-regressions-at-one-time">Multiple Regressions at One Time</a></li>
   </ul>
 </nav>
     </div>
@@ -297,8 +297,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </span></p>
 <p>by the exogeneity of <span class="math inline">X</span>. So the standard error in the MSE example is correct.</p>
 </section>
-<section id="multiple-regression-at-one" class="level1">
-<h1>Multiple regression at one</h1>
+<section id="multiple-regressions-at-one-time" class="level1">
+<h1>Multiple Regressions at One Time</h1>
 <p>Sometimes, we may want to compare coefficients in two different regressions. In this case, a formal hypothesis test is hard to implement because we need a variance-covariance matrix of the coefficients in different regressions. One easy solution is to trick statistical softwares to run two regression at one time by stacking the two regressions.</p>
 <p>Suppose we want to compare the coefficients <span class="math inline">\alpha</span> and <span class="math inline">\beta</span> in regressions</p>
 <p><span class="math display">
@@ -342,7 +342,12 @@ X &amp; 0 \\
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>df<span class="sc">$</span>sid <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(hsb2)), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(hsb2)))</span>
 <span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>stacked <span class="ot">&lt;-</span> <span class="fu">lm</span>(rm <span class="sc">~</span> ., <span class="at">data =</span> df)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">vcov</span>(stacked, <span class="at">type =</span> <span class="st">"const"</span>, <span class="at">cluster =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(hsb2)), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(hsb2))))[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>), <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(stacked)[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> female.r  female.m 
+-1.511128  1.160903 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">vcov</span>(stacked, <span class="at">type =</span> <span class="st">"const"</span>, <span class="at">cluster =</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">nrow</span>(hsb2)), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="fu">nrow</span>(hsb2))))[<span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>), <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">5</span>)]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             female.r     female.m
 female.r 1.205347e+00 2.701477e-15
