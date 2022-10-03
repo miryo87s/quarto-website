@@ -102,6 +102,7 @@ df <- data.frame(read.math, rbind(as.matrix(X), as.matrix(D))) |>
 df$sid <- c(rep(1, nrow(hsb2)), rep(0, nrow(hsb2)))
 
 stacked <- lm(rm ~ ., data = df)
+coef(stacked)[c(2, 5)]
 vcov(stacked, type = "const", cluster = c(rep(1, nrow(hsb2)), rep(0, nrow(hsb2))))[c(2, 5), c(2, 5)]
 ```
 
