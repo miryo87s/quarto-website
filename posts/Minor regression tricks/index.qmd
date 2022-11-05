@@ -29,7 +29,6 @@ with $f(W_i) = (Y_i - \hat{g}(X_i))^2$.
 Calculating $\hat\theta$ is simple but obtaining the standard error of $\hat\theta$ requires extra efforts. In this case, we can utilize the convenient linear regression functions in statistical softwares. The sample mean of some function $f(W_i)$ is equivalent to regressing $f(W_i)$ on a vector of $1$.
 
 ```{r mse}
-
 set.seed(1)
 
 n <- 1000
@@ -48,17 +47,12 @@ mse.lm <- lm((Y - gX)^2 ~ 1) |> summary()
 cat("The MSE of gX by linear regression is", mse.lm$coef[1], "with SE", mse.lm$coef[2])
 ```
 
-By this linear regression trick, we can easily obtain $\hat\theta$ and its standard error. The estimator by linear regression is equivalent to the sample mean and is always consistent. However, if there is an estimator in $f(W_i)$ such as $\hat{g}(X_i)$ in the MSE example, to ensure the standard error is correct, we need $f(W_i)$ to satisfy
-$$
-\mathbb{E}[\partial_\gamma f(W_i)] = 0
-$$ {#eq-ortho}
-where $\gamma$ is the parameter in $g(X_i)$ with $\hat{g}(X_i) = g(X_i, \hat\gamma)$. This is because we need to take into account the estimation error in $\hat{g}(X_i)$ when calculating the standard error of $\hat\theta$, but this estimation error does not affect $f(W_i)$ if @eq-ortho is satisfied (partial derivative is 0).
+We can easily obtain the standard error of the MSE but notice that by doing this, the sum of squared in the MSE is divided by $n$. In small samples, we need to change the denominator to $n - 2$ (lost two degrees of freedom in $\hat\beta_0$ and $\hat\beta_1$ in $gX$) by multiplying $n/(n - 2)$ and also adjust the standard error accordingly. After adjustment, the MSE is the same as in the anova table.
 
-In the MSE example, $\hat{g}(X_i) = X_i\hat\gamma$ and $f(W_i) = (Y_i - X_i\gamma)^2$. Then
-$$
-\mathbb{E}[\partial_\gamma f(W_i)] = \mathbb{E}[-X_i'(Y_i - X_i\gamma)] = 0
-$$
-by the exogeneity of $X$. So the standard error in the MSE example is correct.
+```{r anova}
+mse.lm$coefficients[1] * (n / (n - 2))
+anova(mod)['Residuals', 'Mean Sq']
+```
 
 # Multiple Regressions at One Time
 
