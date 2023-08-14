@@ -29,7 +29,7 @@ My main research interests include estimation and inference of heterogeneous tre
 <a class="btn btn-outline-dark", href="https://github.com/miryo87s" target="_blank" rel="noopener noreferrer">
     <i class="bi bi-github" role='img' aria-label='Github'></i>
 </a>
-<a class="btn btn-outline-dark", href="yfz.1017@gmail.com" target="_blank" rel="noopener noreferrer">
+<a class="btn btn-outline-dark", href="mailto:fangzhou.yu@student.unsw.edu.au" target="_blank" rel="noopener noreferrer">
     <i class="ai bi-envelope" role='img' aria-label='email'></i>
 </a>
 ```
