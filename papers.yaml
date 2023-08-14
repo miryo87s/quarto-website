@@ -4,11 +4,13 @@ hte:
     - me
   year: 2022
   draft: https://www.dropbox.com/s/axnth7tzlb39bah/paper.pdf?dl=0
+  venue: Presented at WEAI 2023 Melbourne, SETA 2023 Singapore, EcoSta 2023 Tokyo
 olsipw:
   title: OLS as Propensity Weighting Estimators and Its Causal Interpretation
   authors:
     - me
   year: 2023
+  venue: Presented at ESAM 2023 Sydney
 missense:
   title: Measuring the Sensitivity of Parameter Estimates to Estimation Moments under Misspecification
   authors:
