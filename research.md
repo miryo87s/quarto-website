@@ -33,7 +33,7 @@ keep-md: true
 ### 2022{#not-published-2022}
 
 ```{=html}
-<ul class='list-group list-group-flush'><li class='list-group-item'><strong>Fangzhou Yu</strong>. (2022) "Tests for Heterogeneous Treatment Effects." <em>Presented at WEAI 2023 Melbourne, SETA 2023 Singapore, EcoSta 2023 Tokyo</em><br><a class="btn btn-outline-dark btn-sm", href="https://www.dropbox.com/s/axnth7tzlb39bah/paper.pdf?dl=0" target="_blank" rel="noopener noreferrer">
+<ul class='list-group list-group-flush'><li class='list-group-item'><strong>Fangzhou Yu</strong>. (2022) "Tests for Heterogeneous Treatment Effects." <em>Presented at WEAI 2023 Melbourne, SETA 2023 Singapore, EcoSta 2023 Tokyo, Young Econometrician Award in 32nd ANZESG</em><br><a class="btn btn-outline-dark btn-sm", href="https://www.dropbox.com/s/axnth7tzlb39bah/paper.pdf?dl=0" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-file-earmark-pdf" role='img' aria-label='Draft'></i>
         Draft
     </a></li></ul>
