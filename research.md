@@ -23,11 +23,16 @@ keep-md: true
 
 ## Working Papers and Works in Progress
 
+### 2024{#not-published-2024}
+
+```{=html}
+<ul class='list-group list-group-flush'><li class='list-group-item'>Seojeong Lee and <strong>Fangzhou Yu</strong>. (2024) "Measuring the Sensitivity of Parameter Estimates to Estimation Moments under Misspecification."<br></li></ul>
+```
+
 ### 2023{#not-published-2023}
 
 ```{=html}
-<ul class='list-group list-group-flush'><li class='list-group-item'><strong>Fangzhou Yu</strong>. (2023) "OLS as Propensity Weighting Estimators and Its Causal Interpretation." <em>Presented at ESAM 2023 Sydney</em><br></li>
-<li class='list-group-item'>Seojeong Lee and <strong>Fangzhou Yu</strong>. (2023) "Measuring the Sensitivity of Parameter Estimates to Estimation Moments under Misspecification."<br></li></ul>
+<ul class='list-group list-group-flush'><li class='list-group-item'><strong>Fangzhou Yu</strong>. (2023) "OLS as Propensity Weighting Estimators and Its Causal Interpretation." <em>Presented at ESAM 2023 Sydney</em><br></li></ul>
 ```
 
 ### 2022{#not-published-2022}
