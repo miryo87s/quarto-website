@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Fangzhou Yu</title>
+<link>https://fzy.netlify.app/post.html</link>
+<atom:link href="https://fzy.netlify.app/post.xml" rel="self" type="application/rss+xml"/>
+<description>Personal website of Fangzhou Yu</description>
+<generator>quarto-1.4.554</generator>
+<lastBuildDate>Sat, 01 Oct 2022 14:00:00 GMT</lastBuildDate>
+<item>
+  <title>{B4F502887207:/posts/Minor regression tricks/index.html}</title>
+  <dc:creator>Fangzhou Yu</dc:creator>
+  <link>https://fzy.netlify.app/posts/Minor regression tricks/</link>
+  <description>{B4F502887207:/posts/Minor regression tricks/index.html}</description>
+  <category>memo</category>
+  <guid>https://fzy.netlify.app/posts/Minor regression tricks/</guid>
+  <pubDate>Sat, 01 Oct 2022 14:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
