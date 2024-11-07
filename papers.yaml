@@ -1,16 +1,16 @@
+olsipw:
+  title: (Job Market Paper) Causal Interpretation of Least Square Estimand under Model- and Design-Based Specification
+  authors:
+    - me
+  year: 2024
+  venue: Presented at ESAM 2023 Sydney, Midwest Econometric Group Conference 2024 Lexington KY
 hte:
   title: Tests for Heterogeneous Treatment Effects
   authors:
     - me
-  year: 2022
+  year: 2023
   draft: https://www.dropbox.com/scl/fi/ygvs1evc2qhtlvesl7ys0/draft_restat.pdf?rlkey=7gdspevet7277hvek8kv7buxs&st=bqhj26fp&dl=0
   venue: Presented at WEAI 2023 Melbourne, SETA 2023 Singapore, EcoSta 2023 Tokyo, Young Econometrician Award in 32nd ANZESG. Submitted.
-olsipw:
-  title: Causal Interpretation of Least Square Estimand under Model- and Design-Based Specification
-  authors:
-    - me
-  year: 2023
-  venue: Presented at ESAM 2023 Sydney
 missense:
   title: Measuring the Sensitivity of Parameter Estimates to Estimation Moments under Misspecification
   authors:
