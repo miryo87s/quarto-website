@@ -27,7 +27,7 @@ keep-md: true
 ### 2024{#not-published-2024}
 
 ```{=html}
-<ul class='list-group list-group-flush'><li class='list-group-item'><strong>Fangzhou Yu</strong>. (2024) "(Job Market Paper) Causal Interpretation of Least Square Estimand under Model- and Design-Based Specification." <em>Presented at ESAM 2023 Sydney, Midwest Econometric Group Conference 2024 Lexington KY</em><br><a class="btn btn-outline-dark btn-sm", href="https://www.dropbox.com/scl/fi/cxmhalgnmj3yvfuf5apya/Causal_LS.pdf?rlkey=fl5xgg4k4szmrotvinsvoy6jc&st=4gpat1v0&dl=0" target="_blank" rel="noopener noreferrer">
+<ul class='list-group list-group-flush'><li class='list-group-item'><strong>Fangzhou Yu</strong>. (2024) "(Job Market Paper) Causal Interpretation of Least Square Estimand under Model- and Design-Based Specification." <em>Presented at ESAM 2023 Sydney, Midwest Econometric Group Conference 2024 Lexington KY</em><br><a class="btn btn-outline-dark btn-sm", href="https://www.dropbox.com/scl/fi/9msaanydi5z882veujliq/Causal_LS.pdf?rlkey=2bifyko32243f6klwbq1atskr&st=brbq2bqj&dl=0" target="_blank" rel="noopener noreferrer">
         <i class="bi bi-file-earmark-pdf" role='img' aria-label='Draft'></i>
         Draft
     </a></li>
